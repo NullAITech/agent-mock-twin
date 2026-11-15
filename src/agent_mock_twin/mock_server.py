@@ -94,7 +94,7 @@ class MockHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", _cors_origin(self))
         self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, anthropic-version")
-        self.send_header("X-Frame-Options", "SAMEORIGIN")
+        self.send_header("Content-Security-Policy", "frame-ancestors 'self' http://127.0.0.1:* http://localhost:* https://zoth.nullai.tech")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
 
