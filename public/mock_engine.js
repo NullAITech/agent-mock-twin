@@ -10,7 +10,6 @@
 
   // State Management
   const state = {
-    isPro: true,
     latencyMs: 25,
     jitterMs: 15,
     chaosRate: 0.0,
@@ -34,14 +33,12 @@
   let elLatencySlider, elLatencyDisplay;
   let elRouteList, elReplayList;
   let elTestEndpoint, elTestBody, elTestResponse, elBtnRunTest;
-  let elPaywallOverlay, elProModal, elLicenseBadge;
 
   // =========================================================================
   // INITIALIZATION
   // =========================================================================
   function startEngine() {
     initDOMElements();
-    checkLicenseStatus();
     initHeroCanvas();
     initEventListeners();
     initPreloadedSample();
@@ -70,60 +67,7 @@
     elTestBody = document.getElementById('testRequestBody');
     elTestResponse = document.getElementById('testResponseBody');
     elBtnRunTest = document.getElementById('btnRunTest');
-
-    elPaywallOverlay = document.getElementById('paywallOverlay');
-    elProModal = document.getElementById('proModal');
-    elLicenseBadge = document.getElementById('licenseBadge');
   }
-
-  // =========================================================================
-  // LICENSING & OPEN ACCESS
-  // =========================================================================
-  function checkLicenseStatus() {
-    enableProMode();
-  }
-
-  function enableProMode() {
-    state.isPro = true;
-    const badge = elLicenseBadge || document.getElementById('licenseBadge');
-    if (badge) {
-      badge.textContent = '✦ 100% FREE & OPEN ACCESS';
-      badge.className = 'badge badge-pro-active';
-    }
-    const salesBanner = document.getElementById('salesBanner');
-    if (salesBanner) {
-      salesBanner.style.display = 'none';
-    }
-    const overlay = elPaywallOverlay || document.getElementById('paywallOverlay');
-    if (overlay) {
-      overlay.style.display = 'none';
-    }
-    const blurredSections = document.querySelectorAll('.pro-blur-target');
-    blurredSections.forEach(sec => sec.classList.remove('pro-blur-target'));
-  }
-
-  window.openProModal = function () {
-    // 100% Free & Open Access - No modal required
-  };
-
-  window.closeProModal = function () {
-    // 100% Free & Open Access
-  };
-
-  window.activateLicenseKey = function (key) {
-    showNotification('✦ 100% Free & Open Access is active.');
-    return true;
-  };
-
-  window.activateWithKey = function () {
-    showNotification('✦ 100% Free & Open Access is active.');
-  };
-
-  // Intercept Pro Actions — Always Unlocked in Sovereign Mode
-  window.interceptProAction = function (actionName) {
-    showNotification(`⚡ Action executed: ${actionName}`);
-    return true;
-  };
 
   // =========================================================================
   // KINETIC HERO CANVAS (Prism Dual-Ring Network Twin)
