@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+# zothos-repo-shim
+_here="$(readlink -f "$0")"
+_repo="${ZOTH_REPO_DIR:-/home/zoth/NullAITech/agent-mock-twin}"
+_real="$_repo/bin/agent-mock-twin"
+if [ -f "$_real" ] && [ "$(readlink -f "$_real")" != "$_here" ]; then exec "$_real" "$@"; fi
+
 set -e
 
 # Resolves repo root and adds src to PYTHONPATH for zero-pip execution
