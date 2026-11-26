@@ -1,13 +1,12 @@
 {
   "name": "agent-mock-twin",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Offline API mock server and deterministic LLM/REST network twin for AI agents ($0 token spend in CI/CD).",
   "scripts": {
     "start": "python3 server.py --port 8097",
     "serve": "python3 server.py --port 8097",
-    "serve:public": "python3 -m http.server 8097 --directory public",
     "test": "PYTHONPATH=src python3 -m pytest -q tests"
   },
-  "author": "1nc0gn30 (@1nc0gn30) • NullAI",
+  "author": "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
   "license": "MIT"
 }
